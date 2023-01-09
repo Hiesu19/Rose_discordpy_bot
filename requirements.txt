@@ -1,0 +1,9 @@
+discord
+python-dotenv
+PyNaCl
+googletrans==4.0.0rc1
+pytube
+discord
+urllib3
+youtube_dl
+requests
