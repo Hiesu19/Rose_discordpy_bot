@@ -22,6 +22,12 @@ class messenger (commands.Cog):
     async def helpme(self , ctx):
         await ctx.send(embed = help_emb())
 
+    @commands.command()
+    async def xoa(ctx , amount = 1):
+        await ctx.channel.purge(limit = amount+1)
+        await ctx.message.delete()
+        print("Rosé đã xóa {} dòng !" . format(amount))
+
 
 async def setup(client):
     await client.add_cog(messenger(client))

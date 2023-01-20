@@ -37,13 +37,13 @@ def weather_emb(data):
 			colour = 0xff66ff , 
 		)
     embed.set_thumbnail(url = icon_url)
-    embed.add_field(name =  "Hai Bà Trưng, Hà Nội, Viêt Nam."  ,value =time.ctime(data['location']['localtime_epoch']), inline=True)
+    embed.add_field(name =  "Hai Bà Trưng, Hà Nội, Viêt Nam."  ,value =time.ctime(data['location']['localtime_epoch'] + 36000 ), inline=True)
     return embed
 
 def forecast_emb(data , i):
     icon_url = "https://developer.foreca.com/static/images/symbols/" + data['forecast'][i]['symbol'] + ".png"
     thoitiet = dich( data['forecast'][i]['symbolPhrase'])
-    thoigian = time.ctime(data['forecast'][i]['sunriseEpoch'])
+    thoigian = time.ctime(data['forecast'][i]['sunriseEpoch'] + 36000)
     thoigian = thoigian[0:-13]
     embed = discord.Embed(
 			title = "{}.\n{}° / {}°" . format(thoigian ,  data['forecast'][i]['maxTemp'] , data['forecast'][i]['minTemp'] ,  )  ,
@@ -62,10 +62,18 @@ def help_emb():
     embed.add_field(name =  "join"  ,value = "Tham gia phòng thoại", inline=True)
     embed.add_field(name =  "disconnect"  ,value = "Ngắt kết nối phòng thoại", inline=True)
     embed.add_field(name =  "play + 'valume'"  ,value = "Phát bài hát trên Youtube (Mặc định Vivalavida của Rose)", inline=True)
-    embed.add_field(name =  "pause"  ,value = "Tạm dừng hát", inline=True)
-    embed.add_field(name =  "resume"  ,value = "Tiếp tục hát", inline=True)
+    embed.add_field(name =  "pause/resume"  ,value = "Tạm dừng hát/Tiếp tục hát", inline=True)
+    embed.add_field(name =  "chat"  ,value = "Trò chuyện trực tiếp với Rosé !", inline=True)
     embed.add_field(name =  "stop"  ,value = "Dừng hát", inline=True)
     embed.add_field(name =  "thoitiet"  ,value = "Xem thời tiết hiện tại (Mặc định Hai Bà Trưng, Hà Nội)", inline=True)
     embed.add_field(name =  "forecast + 'valume' " ,value = "Dự báo thời tiết (Mặc định 5 ngày, có thể thay đổi nhưng tối đa 12 ngày)", inline=True)
     embed.add_field(name =  "Một vài lệnh khác" ,value = "hello , ping ", inline=True)
     return embed    
+
+def search_emb(ques , data):
+    embed = discord.Embed(
+			title = "#" + ques,
+			colour = 0xff66ff , 
+		)
+    embed.add_field(name =  'Rosé:' ,value = data, inline=True)   
+    return embed

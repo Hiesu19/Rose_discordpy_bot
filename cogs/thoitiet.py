@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from cogs.mod.modun import *
-import time
 from cogs.mod.embed_mod import *
 
 class thoitiet(commands.Cog):

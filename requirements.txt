@@ -7,3 +7,4 @@ discord
 urllib3
 youtube_dl
 requests
+openai

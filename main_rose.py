@@ -8,14 +8,16 @@ from itertools import cycle
 import cogs.music
 import cogs.thoitiet
 import cogs.messenger
+import cogs.chat_gpt
 
 from dotenv.main import load_dotenv
 import os
+import asyncio
 
 load_dotenv()
 token = os.getenv("TOKEN")
 
-cogs = [cogs.music, cogs.thoitiet, cogs.messenger]
+cogs = [cogs.music, cogs.thoitiet, cogs.messenger ,cogs.chat_gpt]
 
 client = commands.Bot(command_prefix='', intents=discord.Intents.all())
 status = cycle(["Gone", "On the ground"])
@@ -33,6 +35,5 @@ async def on_ready():
 @tasks.loop(seconds=100)
 async def change_status():
     await client.change_presence(activity=discord.Game(next(status)))
-
 
 client.run(token)
